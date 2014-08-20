@@ -14,7 +14,7 @@ However, with great power comes great responsibility.
 Usage
 ----
 
-**Jssembly** emulates ```__asm``` syntax found in Visual Studio or GCC in Java. Currently, a proofs of concept work on Android and Windows x64 systems. x84 and *NIX support is currently in development.
+**Jssembly** emulates ```__asm``` syntax found in Visual Studio or GCC in Java. Currently, a few proofs of concept work on Android and Windows x64 systems. x84 and *NIX support is currently in development.
 
 ``` java
 Jssembly jsm = new Jssembly();
