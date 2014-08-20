@@ -22,7 +22,7 @@ Jssembly jsm = new Jssembly();
 ###Blocks
 Jssembly uses  executable code "blocks" as its primary invokable piece of native code. There are two types of blocks: **raw** and **assembly**. Raw blocks contain bytecode whereas assembly blocks contain (you guessed it) platform-specific assembly. For example, here is a raw block called ```test1```:
 
-```
+``` java
 jsm.define("test1", new Block(raw) {{
 	__asm(
 		0x31, 0xC0, 0x48, 0xFF, 0xC0 ... 0xC3
@@ -31,7 +31,7 @@ jsm.define("test1", new Block(raw) {{
 ```
 
 And here is an ```x46``` assembly block called ```test2```:
-```
+``` java
 jsm.define("test2", new Block(x64) {{
 	__asm("nop");
 	__asm("mov rax, rdi")
@@ -40,7 +40,7 @@ jsm.define("test2", new Block(x64) {{
 ```
 
 We invoke ```test1``` by calling ```jsm.get("test1").invoke(argument1, argument2 ... argN)``` or we can invoke a block in-place like so:
-```
+``` java
 jsm.define("test3", new Block(x64) {{
 	__asm(
 		"nop",  // no-op
