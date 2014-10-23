@@ -20,7 +20,7 @@ Usage
 Jssembly jsm = new Jssembly();
 ```
 ###Blocks
-Jssembly uses  executable code "blocks" as its primary invokable piece of native code. There are two types of blocks: **raw** and **assembly**. Raw blocks contain bytecode whereas assembly blocks contain (you guessed it) platform-specific assembly. For example, here is a raw block called ```test1```:
+Jssembly uses  executable code "blocks" as its primary invokable piece of native code. There are two types of blocks: **raw** and **assembly**. Raw blocks contain opcodes whereas assembly blocks contain (you guessed it) platform-specific assembly. For example, here is a raw block called ```test1```:
 
 ``` java
 jsm.define("test1", new Block(raw) {{
