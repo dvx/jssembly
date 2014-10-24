@@ -30,7 +30,7 @@ jsm.define("test1", new Block(raw) {{
 }});
 ```
 
-And here is an ```x46``` assembly block called ```test2```:
+And here is an ```x64``` assembly block called ```test2```:
 ``` java
 jsm.define("test2", new Block(x64) {{
 	__asm("nop");
