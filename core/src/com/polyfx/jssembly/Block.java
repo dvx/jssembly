@@ -20,13 +20,13 @@ public class Block {
 	private String program = "";
 	
 	public Block(byte[] instr) {
-		instructions = instr;
-		architecture = raw;
+		this.instructions = instr;
+		this.architecture = raw;
 	}
 
 	public Block(Architecture arch) {
-		architecture = arch;
-		Lexer lex;
+		this.architecture = arch;
+		Lexer lex = null;
 		Assembler assembler = null;
 		
 		switch (architecture) {
@@ -50,44 +50,59 @@ public class Block {
 		}
 		
 		try {
-			assembler.start();
-			instructions = assembler.getMachineCode();
+			if (assembler != null) {
+				assembler.start();
+				this.instructions = assembler.getMachineCode();
+			} else {
+				throw new JssemblyException("Assembler not found for architecture: " + this.architecture.name());
+			}
 		} catch (RecognitionException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
-	// direct bytes go to memory
-	// NOTE: we use ints here otherwise we need to do annoying casting in the caller
+	/*
+	 * Direct bytes go directly in the buffer (and to memory via the JNI bridge)
+	 * 
+	 * NOTE: we use ints here otherwise we need to do annoying casting in the caller
+	 */
 	public void __asm(int ... bytes) {
 		ByteBuffer byteBuffer = ByteBuffer.allocate(bytes.length);
 		for (int i : bytes) {
 			byteBuffer.put((byte) i);
 		}
-		instructions = byteBuffer.array();
+		this.instructions = byteBuffer.array();
 	}
 
-	// one line at a time
+	/*
+	 * One line at a time
+	 */
 	public void __asm(String line) {
-		program += (line + '\n');
+		this.program += (line + '\n');
 	}
 
-	// multiple lines
+	/*
+	 * Multiple lines
+	 */
 	public void __asm(String... lines) {
 		for (String line : lines) {
-			__asm(line);
+			this.__asm(line);
 		}
 
 	}
 
+	/*
+	 * 
+	 */
 	public String getProgram() {
-		return program;
+		return this.program;
 	}
 	
+	/*
+	 * 
+	 */
 	public void invoke(Object... args) {
-		Jssembly.invoke(instructions, args);
+		Jssembly.invoke(this.instructions, args);
 	}
-
-	// protected abstract void $();
 }

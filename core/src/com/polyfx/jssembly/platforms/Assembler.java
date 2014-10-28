@@ -6,5 +6,5 @@ public interface Assembler {
 
 	Object start() throws RecognitionException;
 	byte[] getMachineCode();
-
+	
 }
