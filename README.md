@@ -5,7 +5,7 @@ Jssembly is a library that allows you to execute native assembly from Java via a
 
   - x86 assembly
   - amd64 assembly
-  - ARMv7/v9 assembly
+  - ARMv7/v8 assembly
 
 However, with great power comes great responsibility.
  
