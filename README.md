@@ -19,7 +19,7 @@ Usage
 ``` java
 Jssembly jsm = new Jssembly();
 ```
-###Blocks
+### Blocks
 Jssembly uses  executable code "blocks" as its primary invokable piece of native code. There are two types of blocks: **raw** and **assembly**. Raw blocks contain opcodes whereas assembly blocks contain (you guessed it) platform-specific assembly. For example, here is a raw block called ```test1```:
 
 ``` java
@@ -50,13 +50,13 @@ jsm.define("test3", new Block(x64) {{
 ```
 Here we see yet another flavor of the ```___asm``` syntax. Note that the parser is called when the ```Block``` constructor is called. In case of a syntax error, we should see an exception when a new definition occurs.
 
-###Arguments
+### Arguments
 We can also pass a variable number of arguments to the ```invoke()``` method. These arguments can be accessed through platform-specific assembly.
 
-###Return types
+### Return types
 In the works, although ```invoke()``` currently returns void.
 
-###Invocation woes
+### Invocation woes
 Great care must be taken with raw blocks as no viable run-time checks can be done on them. Make *sure* that the right raw code is executed on the right platform -- otherwise, the VM will crash. Naive checks are in the works for assembly blocks.
 
 License
